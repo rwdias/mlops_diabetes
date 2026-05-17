@@ -1,0 +1,34 @@
+prd:
+  catalog_name: mlops_prd
+  schema_name: diabetes
+stg:
+  catalog_name: mlops_stg
+  schema_name: diabetes
+dev:
+  catalog_name: mlops_dev
+  schema_name: diabetes
+
+
+experiment_name_basic: /Shared/diabetes-basic
+experiment_name_custom: /Shared/diabetes-custom
+
+parameters:
+  learning_rate: 0.01
+  n_estimators: 1000
+  max_depth: 6
+  
+
+num_features:
+  - Pregnancies
+  - Glucose
+  - BloodPressure
+  - SkinThickness
+  - Insulin
+  - DiabetesPedigreeFunction
+  - Age
+
+
+cat_features: []
+
+
+target: Outcome

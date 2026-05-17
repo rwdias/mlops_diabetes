@@ -5,15 +5,46 @@
 bundle:
   name: mlops_diabetes
 
+artifacts:
+  default:
+    type: whl
+    build: uv build
+    path: .
+
+variables:
+  git_sha:
+    description: git_sha
+    default: abcd
+  branch:
+    description: branch
+    default: main
+  schedule_pause_status:
+    description: schedule pause status
+    default: PAUSED
+
 targets:
   dev:
-    mode: development
     default: true
+    mode: development
     workspace:
       host: https://dbc-94bd4411-ae98.cloud.databricks.com
+      root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.target}/${bundle.name}
+    variables:
+      schedule_pause_status: PAUSED
 
-  ## Optionally, there could be 'staging' or 'prod' targets here.
-  #
-  # prod:
-  #   workspace:
-  #     host: https://dbc-94bd4411-ae98.cloud.databricks.com
+  acc:
+    presets:
+      name_prefix: 'stg_'
+    workspace:
+      host: https://dbc-94bd4411-ae98.cloud.databricks.com
+      root_path: /Shared/.bundle/${bundle.target}/${bundle.name}
+    variables:
+      schedule_pause_status: PAUSED
+
+  prd:
+    mode: production
+    workspace:
+      host: https://dbc-94bd4411-ae98.cloud.databricks.com
+      root_path: /Shared/.bundle/${bundle.target}/${bundle.name}
+    variables:
+      schedule_pause_status: PAUSED # normally UNPAUSED

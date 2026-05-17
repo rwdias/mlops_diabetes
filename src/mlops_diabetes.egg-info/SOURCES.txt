@@ -1,0 +1,9 @@
+pyproject.toml
+version.txt
+src/diabetes_process/__init__.py
+src/diabetes_process/config.py
+src/mlops_diabetes.egg-info/PKG-INFO
+src/mlops_diabetes.egg-info/SOURCES.txt
+src/mlops_diabetes.egg-info/dependency_links.txt
+src/mlops_diabetes.egg-info/requires.txt
+src/mlops_diabetes.egg-info/top_level.txt

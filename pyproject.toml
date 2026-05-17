@@ -1,64 +1,62 @@
 [project]
 name = "mlops-diabetes"
 description = "MLOps diabetes project"
-requires-python = ">=3.14,<3.15"
+requires-python = ">=3.12, <3.13"
 dependencies = [
-    "mlflow>=3.1.1",
-    "cffi>=1.17.1",
-    "cloudpickle>=3.1.1",
-    "numpy>=2.2",
-    "pandas>=2.3.3",
-    "pyarrow>=22.0.0",
-    "scikit-learn>=1.7.0",
-    "lightgbm>=4.6.0",
-    "scipy>=1.16.0",
-    "databricks-sdk>=0.55.0",
-    "pydantic>=2.11.7",
-    "loguru>=0.7.3",
-    "python-dotenv>=1.1.1",
-    "pyyaml>=6.0.2",
-    "pyspark",
+    "mlflow==3.1.1",
+    "cffi==1.17.1",
+    "cloudpickle==3.1.1",
+    "numpy==1.26.4",
+    "pandas==2.3.0",
+    "pyarrow==17.0.0",
+    "scikit-learn==1.7.0",
+    "lightgbm==4.6.0",
+    "scipy==1.16.0",
+    "databricks-sdk==0.55.0",
+    "pydantic==2.11.7",
+    "loguru==0.7.3",
+    "python-dotenv==1.1.1",
 ]
 
-dynamic = ["version"]
+dynamic = ['version']
 
 [project.optional-dependencies]
-dev = [
-    "ipykernel>=6.29.5,<7",
-    "pip>=25.0.1,<26",
-    "pre-commit>=4.1.0,<5",
-]
+dev = ["databricks-connect>=16.0, <17",
+       "ipykernel>=6.29.5, <7",
+       "pip>=25.0.1, <26",
+       "pre-commit>=4.1.0, <5"]
 
-test = [
-    "pre-commit>=4.1.0,<5",
-    "pytest>=8.0.0,<9",
-    "pytest-cov>=5.0.0,<6",
-]
+test = ["pre-commit>=4.1.0, <5",
+       "pytest>=8.0.0, <9",
+       "pytest-cov>=5.0.0, <6",
+       "pyspark>=3.4.0, <4"]
 
 [build-system]
 requires = [
-    "setuptools>=72.0",
-]
+  "setuptools>=72.0"]
 build-backend = "setuptools.build_meta"
 
+
 [tool.setuptools.packages.find]
-where = ["src"]
+where =["src"]
 include = ["diabetes_process*"]
+
 
 [tool.setuptools.dynamic]
 version = { file = "version.txt" }
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
-pythonpath = ["."]
+testpaths = [ "tests" ]
+pythonpath = [ "." ]
 markers = [
-    "ci_exclude: Tests excluded from CI/CD pipeline",
+    "ci_exclude: Tests excluded from CI/CD pipeline"
 ]
 addopts = [
     "--cov=src",
     "--cov-report=term",
-    "--cov-report=xml:coverage.xml",
+    "--cov-report=xml:coverage.xml"
 ]
+
 
 [tool.ruff]
 line-length = 120
@@ -73,16 +71,17 @@ lint.select = [
     "ERA",  # eradicate rules
     "C",    # pylint convention rules
     "D",    # pydocstyle rules
-    "ANN",  # flake8-annotations rules
+    "ANN"   # flake8-annotations rules
 ]
 lint.ignore = [
-    "D107",   # Missing docstring in __init__
-    "D203",   # Incorrect blank line before class
-    "D213",   # Multi-line summary second line
-    "E501",   # Line too long
-    "C901",   # Too complex
-    "ERA001", # Commented-out code
-    "D100",   # Missing module docstring
+    "D107", # Missing docstring in `__init__`
+    "D203", # incorrect-blank-line-before-class
+    "D213", # multi-line-summary-second-line
+    "E501", # line-too-long
+    "C901", # too complex
+    "ERA001", # commented out code
+    "D100", # missing docstring
+    "ERA001" # commented out code
 ]
 
 [tool.ruff.format]
